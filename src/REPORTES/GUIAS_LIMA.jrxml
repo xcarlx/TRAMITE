@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="758" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="42" uuid="b3eea4db-8868-4b44-8058-62f9d61b5079">
-	<property name="ireport.zoom" value="0.9313819845887338"/>
+	<property name="ireport.zoom" value="1.9965000000000035"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
@@ -183,7 +183,7 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 				<text><![CDATA[TIPO DOC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="124" y="0" width="171" height="25" backcolor="#CCCCCC" uuid="11524f41-6d45-4821-acbf-fec232c1752b"/>
+				<reportElement mode="Opaque" x="176" y="0" width="143" height="25" backcolor="#CCCCCC" uuid="11524f41-6d45-4821-acbf-fec232c1752b"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -196,7 +196,7 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 				<text><![CDATA[DEPENDENCIA DE ORIGEN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="295" y="0" width="132" height="25" backcolor="#CCCCCC" uuid="65aeea82-7892-437d-add0-2bde948f8a5f"/>
+				<reportElement mode="Opaque" x="319" y="0" width="118" height="25" backcolor="#CCCCCC" uuid="65aeea82-7892-437d-add0-2bde948f8a5f"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -209,7 +209,7 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 				<text><![CDATA[NOMBRE DEL REMITENTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="427" y="0" width="155" height="25" backcolor="#CCCCCC" uuid="799698f1-c39b-452f-b725-0ae5a813d2bc"/>
+				<reportElement mode="Opaque" x="437" y="0" width="155" height="25" backcolor="#CCCCCC" uuid="799698f1-c39b-452f-b725-0ae5a813d2bc"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -222,7 +222,7 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 				<text><![CDATA[LUGAR O DEPENDENCIA DESTINO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="582" y="0" width="126" height="25" backcolor="#CCCCCC" uuid="11820c02-7db0-4d07-a456-c38342b8a28b"/>
+				<reportElement mode="Opaque" x="592" y="0" width="116" height="25" backcolor="#CCCCCC" uuid="11820c02-7db0-4d07-a456-c38342b8a28b"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -246,6 +246,19 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FECHA DE ENVIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="124" y="0" width="52" height="25" backcolor="#CCCCCC" uuid="338a4d54-4320-435e-82a4-c318ae4319a2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCUM. N°]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -278,7 +291,7 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 				<textFieldExpression><![CDATA[$F{tipo_doc_TIPO}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="124" y="0" width="171" height="15" uuid="d4d2beed-19b2-434d-aa8a-7f820b8b939c"/>
+				<reportElement x="176" y="0" width="143" height="15" uuid="d4d2beed-19b2-434d-aa8a-7f820b8b939c"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -291,7 +304,7 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 				<textFieldExpression><![CDATA[$F{guia_detalle_DEPENDENCIA_O}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="295" y="0" width="132" height="15" uuid="336fc58a-a1b3-47b8-9ea5-7d68022356f8"/>
+				<reportElement x="319" y="0" width="118" height="15" uuid="336fc58a-a1b3-47b8-9ea5-7d68022356f8"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -304,7 +317,7 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 				<textFieldExpression><![CDATA[$F{guia_detalle_REMITENTE}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="427" y="0" width="155" height="15" uuid="d6a66de5-7915-4a89-b4e1-9c39d0350d82"/>
+				<reportElement x="437" y="0" width="155" height="15" uuid="d6a66de5-7915-4a89-b4e1-9c39d0350d82"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -317,7 +330,7 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 				<textFieldExpression><![CDATA[$F{guia_detalle_DESTINO}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="582" y="0" width="126" height="15" uuid="9316320e-0bc2-433e-9fe6-3abd2a1b1d06"/>
+				<reportElement x="592" y="0" width="116" height="15" uuid="9316320e-0bc2-433e-9fe6-3abd2a1b1d06"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -355,6 +368,19 @@ WHERE guia.idguia=(select max(idguia) from guia where idtipo_guia=1 AND estado l
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nrog}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="124" y="0" width="52" height="15" uuid="03b93c27-1666-4aee-9160-8405d98cd779"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guia_detalle_NRO_DOC}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
