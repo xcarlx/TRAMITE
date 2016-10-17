@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b1daefe0-b4a7-48f9-b9d2-5aeeed1a939a">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="133"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DEPENDENCIA" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="asignado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT doc.iddoc, td.tipo,dep.dependencia as depen,dr.asignado,doc.nro_doc,doc.hoja_ruta, doc.fecha, doc.remitente from documento doc inner join derivar dr on doc.iddoc=dr.iddoc inner join dependencias dep on dr.iddependencia_d = dep.iddependencia inner join dependencias dep1 on dr.iddependencia_o = dep1.iddependencia inner join usuarios us on dr.usuario = us.usuario inner join personal per on us.dni = per.dni inner join tipo_doc td on doc.idtipo_doc = td.idtipo_doc
+where doc.idactividad=1 and dep.iddependencia=$P{DEPENDENCIA} and dep1.iddependencia=$P{DEPENDENCIA} and dr.estado like 'DERIVADO' and dr.IDDERIVAR = (select max(dr2.idderivar) from derivar dr2 where dr.iddoc=dr2.IDDOC) and dr.asignado like $P{asignado}]]>
+	</queryString>
+	<field name="iddoc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="depen" class="java.lang.String"/>
+	<field name="asignado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nro_doc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hoja_ruta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="remitente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="79" width="100" height="11" uuid="00cf335b-c8eb-40c4-9860-19d24ec28cbe"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[MINISTERIO PÚBLICO]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="17" y="0" width="69" height="79" uuid="5d26aeb3-c229-4ecc-b4e1-e74dff3250c0"/>
+				<imageExpression><![CDATA[System.getProperty("user.dir")+"\\src\\REPORTES\\LOGO.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="86" y="29" width="469" height="35" uuid="8f081e8d-7518-4cb8-8987-5b6db3602b78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{depen}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="0" width="177" height="15" uuid="e577779b-b433-473b-b676-d662e6d163f7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTOS DERIVADOS A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="15" width="177" height="15" uuid="8266cbbe-2171-4294-9f5d-ef74f9963de1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASIGNADO A:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="194" y="15" width="361" height="15" uuid="5e0ef7bc-9262-4e54-a86a-8686773c6725"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asignado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="194" y="0" width="100" height="15" uuid="93d426e0-2845-4587-9337-d4f0f2f1398e"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{depen}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="1" width="51" height="19" uuid="13cacc5b-02d4-454d-a32a-2450306f18ee"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID DOC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="1" width="109" height="19" uuid="56a6b1e0-e225-46d8-93c9-5d6a5dd605f9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO DOC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="164" y="1" width="71" height="19" uuid="fda2c7e9-3f18-4de0-b671-194a66cde265"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NRO DOC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="1" width="81" height="19" uuid="b07e5b69-999a-462e-be04-872919ea8e37"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HOJA RUTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="1" width="76" height="19" uuid="34d3dcbc-feac-4b7f-9345-88e0e69c2ee0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="1" width="160" height="19" uuid="9f048d2b-2ff5-4d03-ba8c-0031a86706d7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REMITENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="b6523398-8897-4b3d-ba73-02f3c951c9ca"/>
+			</line>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="ebc81488-ea3f-4b3e-9148-01c99507c44f"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="51" height="13" uuid="32ecb53f-85ac-4f91-82c0-b6197df5d92b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{iddoc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="0" width="109" height="13" uuid="754031ed-55aa-4504-a5f1-1a97ccf79448"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="164" y="0" width="71" height="13" uuid="15b15ba9-ca7d-4e48-a7fb-9697df2f1e52"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro_doc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="334" y="0" width="48" height="13" uuid="26d5fedb-2d4d-47ef-9d98-b96a7bd25575"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="0" width="150" height="13" uuid="aadfbfa5-d0b5-435e-9c58-1f6b7d33a180"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="51" y="-20" width="1" height="33" uuid="49c9fb01-b217-46b4-9880-c783c218b062"/>
+			</line>
+			<line>
+				<reportElement x="163" y="-20" width="1" height="33" uuid="04bf64f3-1aa1-4940-87fe-7d40a1d488fa"/>
+			</line>
+			<textField>
+				<reportElement x="235" y="0" width="82" height="13" uuid="2ef80dc7-89af-488c-9750-63d7e841b419"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hoja_ruta}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="235" y="-20" width="1" height="33" uuid="d1518c22-3cb1-4fbc-803d-3ca4c48ef14b"/>
+			</line>
+			<line>
+				<reportElement x="317" y="-20" width="1" height="33" uuid="fa86c9e1-7237-4cda-b958-913abd4ea8a2"/>
+			</line>
+			<line>
+				<reportElement x="394" y="-20" width="1" height="33" uuid="d682ea22-4338-4a7a-ba82-11b795cacb9f"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="53" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="cb630e4c-1379-4f43-8855-fdfb2e4694ca"/>
+			</line>
+			<line>
+				<reportElement x="236" y="22" width="100" height="1" uuid="285b2cae-55a7-4f23-95d5-dd77ee35e0ca"/>
+			</line>
+			<staticText>
+				<reportElement x="236" y="23" width="100" height="20" uuid="c9cd90cb-84f8-41c8-a624-825bc7a4a378"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[RECEPCIONADO]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
