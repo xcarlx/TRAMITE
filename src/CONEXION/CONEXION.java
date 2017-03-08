@@ -14,13 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class CONEXION {
     public String db = "tramite_documentario";
-    public String url = "jdbc:mysql://192.168.16.205:3306/"+db;
-    //public String url = "jdbc:mysql://192.168.0.4:3306/"+db;
-//    public String url = "jdbc:mysql://localhost:3306/"+db;
-    public String user = "FISCALIA";
-//    public String user = "root";
-//    public String pass = "123456";   
-    public String pass = "F&sc@l&@2013";   
+//    public String url = "jdbc:mysql://192.168.16.205:3306/"+db;
+//    public String url = "jdbc:mysql://192.168.0.4:3306/"+db;
+    public String url = "jdbc:mysql://localhost:3306/"+db;
+//    public String user = "FISCALIA";
+    public String user = "root";
+    public String pass = "123456";   
+//    public String pass = "F&sc@l&@2013";   
     public CONEXION(){
  
    }

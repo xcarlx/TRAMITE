@@ -589,7 +589,7 @@ public final class GUIAS_LIMA extends javax.swing.JDialog {
         String sSQL = null,msj;
         switch(AnuevoGuia){
             case "NUEVO":
-                sSQL="INSERT INTO GUIA (IDGUIA, IDTIPO_GUIA, FECHA_ENVIO, "
+                sSQL="INSERT INTO guia (IDGUIA, IDTIPO_GUIA, FECHA_ENVIO, "
                 + "ENVIADOR, ESTADO, IDDEPENDENCIA, NROGUIA) VALUES(?,?,?,?,?,?,?)";
                 msj="GUIA INGRESADA";
                 break;
@@ -664,13 +664,13 @@ public final class GUIAS_LIMA extends javax.swing.JDialog {
         String sSQL = null,msj;
         switch(AnuevoDetalle){
             case "NUEVO":
-                sSQL="INSERT INTO GUIA_DETALLE (IDGUIA_D, IDTIPO_GUIA, IDGUIA, "
+                sSQL="INSERT INTO guia_detalle (IDGUIA_D, IDTIPO_GUIA, IDGUIA, "
                         + "NRO_DOC, DEPENDENCIA_O, CODIGO, DESTINO, IDTIPO_DOC) "
                         + "VALUES(?,?,?,?,?,?,?,?)";
                 msj="DOCUMENTO INGRESADO";
                 break;
             case "MODIFICAR":
-                sSQL="UPDATE GUIA_DETALLE "
+                sSQL="UPDATE guia_detalle "
                         + "SET NRO_DOC = ?,"
                         + "DEPENDENCIA_O = ?,"
                         + "DESTINO = ?,"
@@ -818,7 +818,7 @@ public final class GUIAS_LIMA extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e);
         }
         try {
-            String sql="UPDATE GUIA SET ESTADO=? WHERE IDGUIA="+idguia+" "
+            String sql="UPDATE guia SET ESTADO=? WHERE IDGUIA="+idguia+" "
                     + "AND ESTADO LIKE 'ACTIVO' and idtipo_guia=1";
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, "ENVIADO");

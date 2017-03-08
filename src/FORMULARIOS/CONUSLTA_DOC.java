@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -412,11 +414,22 @@ public class CONUSLTA_DOC extends javax.swing.JDialog {
     }//GEN-LAST:event_txtAreaRemiteKeyPressed
 
     private void txtAsuntoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAsuntoKeyPressed
-        String asunto;
-        if(txtAsunto.getText().length()>0){
-            asunto=txtAsunto.getText();
-            TablaDocumento(null, null, null, null, asunto);
-        }
+//        String asunto;
+//        if(txtAsunto.getText().length()>0){
+//            asunto=txtAsunto.getText();
+//            TablaDocumento(null, null, null, null, asunto);
+//        }
+        TableRowSorter sorter = new TableRowSorter<>(tblDocumento.getModel());
+               RowFilter<DefaultTableModel, Object> rf;
+               //If current expression doesn't parse, don't update.
+               try {
+                   rf = RowFilter.regexFilter(txtAsunto.getText().toUpperCase(), 7);
+               } catch (java.util.regex.PatternSyntaxException e) {
+                   return;
+               }
+                sorter.setRowFilter(rf);
+       tblDocumento.setRowSorter(sorter);
+       
     }//GEN-LAST:event_txtAsuntoKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

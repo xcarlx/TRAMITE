@@ -647,14 +647,14 @@ public final class EMITIDOS extends javax.swing.JDialog {
        String sSQL="", msj;
        switch (Anuevo) {
            case "NUEVO":
-               sSQL="INSERT INTO DOCUMENTO(NRO_DOC, FECHA, "
+               sSQL="INSERT INTO documento(NRO_DOC, FECHA, "
                        + "DIRIGIDO_A, LUGAR, DEPENDENCIA,ASUNTO, ESTADO,USUARIO,"
                        + "IDTIPO_DOC,IDACTIVIDAD)"
                        + "VALUES(?,?,?,?,?,?,?,?,?,?)";
                msj="DOCUMENTO AGREGADO";
                break;
            case "MODIFICAR":
-               sSQL="UPDATE DOCUMENTO SET NRO_DOC = ?, FECHA = ?, DIRIGIDO_A = ?,"
+               sSQL="UPDATE documento SET NRO_DOC = ?, FECHA = ?, DIRIGIDO_A = ?,"
                        + "LUGAR = ?, DEPENDENCIA = ?,ASUNTO = ?, ESTADO=?,USUARIO=?, "
                        + "IDTIPO_DOC = ?, IDACTIVIDAD = ? "
                        + "WHERE IDDOC="+idemitidos;

@@ -257,7 +257,7 @@ public final class ASIGNAR extends javax.swing.JDialog {
             if(cont > 0){
                 for(int i=0;i<cont;i++){
                     id=(String) tblDerivar.getValueAt(i, 0);
-                    String sSQL="UPDATE DERIVAR SET FECHA=?,ESTADO = ?, USUARIO = ?, OBSERVACIONES=? "
+                    String sSQL="UPDATE derivar SET FECHA=?,ESTADO = ?, USUARIO = ?, OBSERVACIONES=? "
                             + "where iddependencia_d = "+this.getDependencia()+" AND estado like 'INICIO' and iddoc="+id;
                     try {
                         SimpleDateFormat sdf;   

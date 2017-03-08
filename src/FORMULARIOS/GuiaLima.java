@@ -60,7 +60,7 @@ public final class GuiaLima extends javax.swing.JDialog {
     public void NuevaGuia(){
         String sSQL ,msj;
 
-        sSQL="INSERT INTO GUIA (IDGUIA, IDTIPO_GUIA, FECHA_ENVIO, "
+        sSQL="INSERT INTO guia (IDGUIA, IDTIPO_GUIA, FECHA_ENVIO, "
         + "ENVIADOR, ESTADO, IDDEPENDENCIA, NROGUIA) VALUES(?,?,?,?,?,?,?)";
 
         int idguia = 0;
@@ -158,13 +158,13 @@ public final class GuiaLima extends javax.swing.JDialog {
          String sSQL = null,msj;
         switch(AgregarNuevo){
             case "NUEVO":
-                sSQL="INSERT INTO GUIA_DETALLE (IDGUIA_D, IDTIPO_GUIA, IDGUIA, "
+                sSQL="INSERT INTO guia_detalle (IDGUIA_D, IDTIPO_GUIA, IDGUIA, "
                         + "NRO_DOC, DEPENDENCIA_O, CODIGO, DESTINO,REMITENTE,DESTINATARIO,IDTIPO_DOC) "
                         + "VALUES(?,?,?,?,?,?,?,?,?,?)";
                 msj="DOCUMENTO INGRESADO";
                 break;
             case "MODIFICAR":
-                sSQL="UPDATE GUIA_DETALLE "
+                sSQL="UPDATE guia_detalle "
                         + "SET NRO_DOC = ?,"
                         + "DEPENDENCIA_O = ?,"
                         + "DESTINO = ?,"
@@ -386,7 +386,7 @@ public final class GuiaLima extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(483, Short.MAX_VALUE)
+                .addContainerGap(485, Short.MAX_VALUE)
                 .addComponent(btnImprimir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTerminar)
@@ -439,7 +439,7 @@ public final class GuiaLima extends javax.swing.JDialog {
                 .addComponent(btnNuevo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 438, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 461, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addContainerGap())
         );
@@ -505,7 +505,7 @@ public final class GuiaLima extends javax.swing.JDialog {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -518,10 +518,10 @@ public final class GuiaLima extends javax.swing.JDialog {
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                                             .addComponent(cmbTipoDoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(18, 53, Short.MAX_VALUE)
+                                        .addGap(18, 18, Short.MAX_VALUE)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtNroGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -852,7 +852,7 @@ public final class GuiaLima extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e);
         }
         try {
-            String sql="UPDATE GUIA SET ESTADO=?,FECHA_ENVIO = ? WHERE IDGUIA="+idguia+" "
+            String sql="UPDATE guia SET ESTADO=?,FECHA_ENVIO = ? WHERE IDGUIA="+idguia+" "
                     + "AND ESTADO LIKE 'ACTIVO' and idtipo_guia=1";
             SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
             pst = con.prepareStatement(sql);

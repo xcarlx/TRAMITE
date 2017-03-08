@@ -813,10 +813,10 @@ public final class ATENDER extends javax.swing.JDialog {
             int iddr=0;
             SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             if(Atender.equals("DERIVAR")){
-                sql1="INSERT DERIVAR (IDDERIVAR, IDDOC, FECHA, ASIGNADO, "
+                sql1="INSERT derivar (IDDERIVAR, IDDOC, FECHA, ASIGNADO, "
                         + "ESTADO,USUARIO, IDDEPENDENCIA_O, IDDEPENDENCIA_D) "
                         + "VALUES (?,?,?,?,?,?,?,?)";
-                sql2="UPDATE DOCUMENTO SET ESTADO = ? WHERE IDDOC="+lblIddocDerivar.getText();
+                sql2="UPDATE documento SET ESTADO = ? WHERE IDDOC="+lblIddocDerivar.getText();
                 msj="DOCUMENTO DERIVADO";
                 try {
                     //CAPTURAR EL ULTIMO DRIVAR
@@ -882,10 +882,10 @@ public final class ATENDER extends javax.swing.JDialog {
             int iddr=0;
             SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             if(Atender.equals("ATENDER")){
-                sql1="INSERT DERIVAR (IDDERIVAR, IDDOC, FECHA, ASIGNADO, "
+                sql1="INSERT derivar (IDDERIVAR, IDDOC, FECHA, ASIGNADO, "
                         + "ESTADO, OBSERVACIONES, USUARIO, IDDEPENDENCIA_O, IDDEPENDENCIA_D) "
                         + "VALUES (?,?,?,?,?,?,?,?,?)";
-                sql2="UPDATE DOCUMENTO SET ESTADO = ? WHERE IDDOC="+lblIddocA.getText();
+                sql2="UPDATE documento SET ESTADO = ? WHERE IDDOC="+lblIddocA.getText();
                 msj="DOCUMENTO ATENDIDO";
                 try {
                     //CAPTURAR EL ULTIMO DRIVAR

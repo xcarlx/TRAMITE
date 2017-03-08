@@ -277,8 +277,8 @@ public final class RECIBIR extends javax.swing.JDialog {
                 if(estad == true){
                     int idderivar = 0;
                     try {
-                        String SQL="SELECT COUNT(dc.IDDOC) FROM DOCUMENTO dc "
-                                + "INNER JOIN DERIVAR dr on dc.iddoc=dr.iddoc "
+                        String SQL="SELECT COUNT(dc.IDDOC) FROM documento dc "
+                                + "INNER JOIN derivar dr on dc.iddoc=dr.iddoc "
                                 + "WHERE dc.iddoc="+id;
                         st = cn.createStatement();
                         rs = st.executeQuery(SQL);

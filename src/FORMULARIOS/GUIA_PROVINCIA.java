@@ -69,7 +69,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             }
             tblGuiaPro.setModel(tabla_guiaProvin);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null,"TablaGuiaPro- \n"+ e);
         }
             
     }
@@ -666,7 +666,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
         String sSQL = null,msj, sSQL1 = null;
         switch(AnuevoGuia){
             case "NUEVO":
-                sSQL="INSERT INTO GUIA (IDGUIA, IDTIPO_GUIA, PROVINCIA,FECHA_ENVIO, "
+                sSQL="INSERT INTO guia (IDGUIA, IDTIPO_GUIA, PROVINCIA,FECHA_ENVIO, "
                 + "ENVIADOR, RESPONSABLE,ESTADO, IDDEPENDENCIA,NROGUIA) VALUES(?,?,?,?,?,?,?,?,?)";
                 msj="GUIA INGRESADA";
                 break;
@@ -815,14 +815,14 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
     public void IdiguiaActiva(){
      try {
-           String sql="select max(idguia), nroguia from guia where idtipo_guia=2 and estado like 'ACTIVO'";
+           String sql="select max(idguia), nroguia from guia where idtipo_guia=2 and estado like 'ACTIVO' group by idguia";
            Statement st = cn.createStatement();
            ResultSet rs = st.executeQuery(sql);
            while(rs.next()){
                lblGuiaProv.setText(rs.getString(2));
            }
         } catch (Exception e) {
-            System.out.println(""+e);
+            System.out.println("IdiguiaActiva-> \n"+e);
         }
     }
     private void btnNuevoDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoDetalleActionPerformed
@@ -842,7 +842,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
                lblGuiaProv.setText(rs.getString(2));
            }
         } catch (Exception e) {
-            System.out.println(""+e);
+            System.out.println("btnNuevoDetalleActionPerformed\n"+e);
         }
         btnNuevoDetalle.setEnabled(false);
         TablaGuiaPro();
@@ -853,13 +853,13 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
         txtNroDoc.requestFocus();
         switch(AnuevoDetalle){
             case "NUEVO":
-                sSQL="INSERT INTO GUIA_DETALLE (IDGUIA_D, IDTIPO_GUIA, IDGUIA, "
+                sSQL="INSERT INTO guia_detalle (IDGUIA_D, IDTIPO_GUIA, IDGUIA, "
                         + "NRO_DOC, DEPENDENCIA_O, IDTIPO_DOC) "
                         + "VALUES(?,?,?,?,?,?)";
                 msj="DOCUMENTO INGRESADO";
                 break;
             case "MODIFICAR":
-                sSQL="UPDATE GUIA_DETALLE "
+                sSQL="UPDATE guia_detalle "
                         + "SET NRO_DOC = ?,"
                         + "DEPENDENCIA_O = ?,"
                         + "IDTIPO_DOC = ? "
@@ -956,7 +956,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e);
         }
         try {
-            String sql="UPDATE GUIA SET ESTADO=? WHERE IDGUIA="+idguia+" "
+            String sql="UPDATE guia SET ESTADO=? WHERE IDGUIA="+idguia+" "
                     + "AND ESTADO LIKE 'ACTIVO' and idtipo_guia=2";
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, "ENVIADO");
@@ -973,7 +973,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
                 TablaGuiaPro();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 

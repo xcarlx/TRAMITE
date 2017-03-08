@@ -120,8 +120,8 @@ public final class CONSULTAS extends javax.swing.JDialog {
         String registro [] = new String[5];
         Tabla_modelo = new DefaultTableModel(null, titulos);
         String sql="select d.FECHA, dp1.dependencia, dp2.dependencia, d.ASIGNADO, d.ESTADO "
-                + "from DERIVAR d inner join DEPENDENCIAS dp1 on d.iddependencia_o=dp1.iddependencia "
-                + "inner join DEPENDENCIAS dp2 on d.iddependencia_d = dp2.iddependencia "
+                + "from derivar d inner join dependencias dp1 on d.iddependencia_o=dp1.iddependencia "
+                + "inner join dependencias dp2 on d.iddependencia_d = dp2.iddependencia "
                 + "where d.iddoc="+iddoc;
         try {
             st = cn.createStatement();

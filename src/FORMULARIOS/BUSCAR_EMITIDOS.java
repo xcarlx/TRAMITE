@@ -10,7 +10,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -342,7 +344,17 @@ public class BUSCAR_EMITIDOS extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDirigidoKeyPressed
 
     private void txtAsuntoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAsuntoKeyPressed
-        BuscarDocumento1(null, null, txtAsunto.getText().toString(),null);
+//        BuscarDocumento1(null, null, txtAsunto.getText().toString(),null);
+        TableRowSorter sorter = new TableRowSorter<>(jTable1.getModel());
+               RowFilter<DefaultTableModel, Object> rf;
+               //If current expression doesn't parse, don't update.
+               try {
+                   rf = RowFilter.regexFilter(txtAsunto.getText().toUpperCase(), 7);
+               } catch (java.util.regex.PatternSyntaxException e) {
+                   return;
+               }
+                sorter.setRowFilter(rf);
+       jTable1.setRowSorter(sorter);
     }//GEN-LAST:event_txtAsuntoKeyPressed
 
     private void txtDependenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDependenciaKeyPressed

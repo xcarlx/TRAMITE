@@ -83,8 +83,7 @@ public final class REGISTRAR extends javax.swing.JDialog {
                 + "on td.idtipo_doc = doc.idtipo_doc "
                 + "where doc.usuario = '"+this.getUsuario()+"' and doc.estado like 'PENDIENTE' and doc.nro_doc like '"+nrodoc+"' "
                 + "OR doc.usuario = '"+this.getUsuario()+"' and doc.estado like 'PENDIENTE' and doc.hoja_ruta like '"+hr+"' "
-                + "OR doc.usuario = '"+this.getUsuario()+"' and doc.estado like 'PENDIENTE' and doc.remitente like '%"+remitente+"%'"
-                + "group by doc.iddoc";
+                + "OR doc.usuario = '"+this.getUsuario()+"' and doc.estado like 'PENDIENTE' and doc.remitente like '%"+remitente+"%'";
         String titulos [] = {"ID","TIPO DOC","NRO DOC","HOJA RUTA","REMITENTE", "AREA REMITE", "FECHA",
                              "DEPENDENCIA DESTINO"};
         tabla_model = new DefaultTableModel(null, titulos);
@@ -105,7 +104,7 @@ public final class REGISTRAR extends javax.swing.JDialog {
             }
             tblDocumento.setModel(tabla_model);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR \n"+e, "ERROR", 0);
+            JOptionPane.showMessageDialog(this, "TablaDocumento - ERROR \n"+e, "ERROR", 0);
         }
         OrderTabla();
     }
@@ -115,7 +114,7 @@ public final class REGISTRAR extends javax.swing.JDialog {
                 + "doc.observaciones from documento doc inner join "
                 + "derivar dr on doc.iddoc=dr.iddoc inner join dependencias dep "
                 + "on dr.iddependencia_d = dep.iddependencia inner join tipo_doc td "
-                + "on td.idtipo_doc = doc.idtipo_doc where doc.iddoc ="+id+" group by doc.iddoc";
+                + "on td.idtipo_doc = doc.idtipo_doc where doc.iddoc ="+id+";";
         try {
             st = cn.createStatement();
             rs = st.executeQuery(sql);
@@ -132,7 +131,7 @@ public final class REGISTRAR extends javax.swing.JDialog {
                 txaObservaciones.setText(rs.getString(10));
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR DATOS \n"+e, "ERROR", 0);
+            JOptionPane.showMessageDialog(this, "Editar - ERROR AL CARGAR DATOS \n"+e, "ERROR", 0);
         }
     }
     /**
@@ -773,8 +772,8 @@ public final class REGISTRAR extends javax.swing.JDialog {
                         //SACAR EL ID MAXIMO DE DERIVAR
                         int idderivar = 0;
                         try {
-                            String SQL="SELECT COUNT(dc.IDDOC) FROM DOCUMENTO dc "
-                            + "INNER JOIN DERIVAR dr on dc.iddoc=dr.iddoc "
+                            String SQL="SELECT COUNT(dc.IDDOC) FROM documento dc "
+                            + "INNER JOIN derivar dr on dc.iddoc=dr.iddoc "
                             + "WHERE dc.iddoc="+iddoc;
                             st = cn.createStatement();
                             rs = st.executeQuery(SQL);
@@ -853,7 +852,7 @@ public final class REGISTRAR extends javax.swing.JDialog {
                             while(rs.next()){
                                 iddr=rs.getString(1);
                             }
-                        } catch (Exception e) {
+                        } catch (SQLException e) {
                             JOptionPane.showMessageDialog(rootPane, "ERROR AL CAPTURAR EL MAXIMO DERIVAR DE LA MODIFICACION \n"+e);
                         }
                         String iddepen = null;
