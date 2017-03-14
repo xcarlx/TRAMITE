@@ -15,8 +15,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -41,6 +45,7 @@ public final class REGISTRAR extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         HI(false);
         Combo();
+        TablaDocumento("", "", "");
     }
     public void HI(boolean a){
         cmbDependencia.setEnabled(a);
@@ -676,10 +681,6 @@ public final class REGISTRAR extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_cmbDependenciaActionPerformed
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        TablaDocumento("", "", "");
-    }//GEN-LAST:event_btnActualizarActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String sSQL = null, sSQL2 = null,msj;
         if(txtNroDoc.getText().length()>0 && txtRemitente.getText().length()>0 
@@ -920,27 +921,54 @@ public final class REGISTRAR extends javax.swing.JDialog {
     }//GEN-LAST:event_miEditarActionPerformed
 
     private void txtBuscarNroDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarNroDocKeyPressed
-        String nro;
-        if(txtBuscarNroDoc.getText().length()>0){
-            nro=txtBuscarNroDoc.getText();
-            TablaDocumento(nro, null, null);
+       TableRowSorter sorter = new TableRowSorter<>(tblDocumento.getModel());
+        RowFilter<DefaultTableModel, Object> rf;
+        //If current expression doesn't parse, don't update.
+        try {
+            
+            List<RowFilter<Object,Object>> filters = new ArrayList<>(1);
+            filters.add(RowFilter.regexFilter(txtBuscarNroDoc.getText().toUpperCase(), 2));
+            rf =  RowFilter.orFilter(filters);
+            
+        } catch (java.util.regex.PatternSyntaxException e) {
+            return;
         }
+         sorter.setRowFilter(rf);
+         tblDocumento.setRowSorter(sorter);
     }//GEN-LAST:event_txtBuscarNroDocKeyPressed
 
     private void txtBuscarHRKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarHRKeyPressed
-        String hr;
-        if(txtBuscarHR.getText().length()>0){
-            hr=txtBuscarHR.getText();
-            TablaDocumento(null, hr, null);
+        TableRowSorter sorter = new TableRowSorter<>(tblDocumento.getModel());
+        RowFilter<DefaultTableModel, Object> rf;
+        //If current expression doesn't parse, don't update.
+        try {
+            
+            List<RowFilter<Object,Object>> filters = new ArrayList<>(1);
+            filters.add(RowFilter.regexFilter(txtBuscarHR.getText().toUpperCase(), 3));
+            rf =  RowFilter.orFilter(filters);
+            
+        } catch (java.util.regex.PatternSyntaxException e) {
+            return;
         }
+         sorter.setRowFilter(rf);
+         tblDocumento.setRowSorter(sorter);
     }//GEN-LAST:event_txtBuscarHRKeyPressed
 
     private void txtBuscarRemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarRemKeyPressed
-        String rem;
-        if(txtBuscarRem.getText().length()>0){
-            rem=txtBuscarRem.getText();
-            TablaDocumento(null, null, rem);
+        TableRowSorter sorter = new TableRowSorter<>(tblDocumento.getModel());
+        RowFilter<DefaultTableModel, Object> rf;
+        //If current expression doesn't parse, don't update.
+        try {
+            
+            List<RowFilter<Object,Object>> filters = new ArrayList<>(1);
+            filters.add(RowFilter.regexFilter(txtBuscarRem.getText().toUpperCase(), 4));
+            rf =  RowFilter.orFilter(filters);
+            
+        } catch (java.util.regex.PatternSyntaxException e) {
+            return;
         }
+        sorter.setRowFilter(rf);
+        tblDocumento.setRowSorter(sorter);
     }//GEN-LAST:event_txtBuscarRemKeyPressed
 
     private void txaAsuntoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txaAsuntoKeyPressed
@@ -979,6 +1007,10 @@ public final class REGISTRAR extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_miImprimirActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        TablaDocumento("", "", "");
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments

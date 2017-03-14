@@ -17,7 +17,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author CARLOS
  */
-public class CONUSLTA_DOC extends javax.swing.JDialog {
+public final class CONUSLTA_DOC extends javax.swing.JDialog {
     DefaultTableModel tabla_modelo;
     Statement st;
     ResultSet rs;
@@ -31,6 +31,19 @@ public class CONUSLTA_DOC extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         TablaDocumento("", "", "", "", "");
+    }
+    public void OrderTabla(){
+        tblDocumento.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblDocumento.getColumnModel().getColumn(1).setPreferredWidth(80);
+        tblDocumento.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tblDocumento.getColumnModel().getColumn(3).setPreferredWidth(80);
+        tblDocumento.getColumnModel().getColumn(4).setPreferredWidth(80);
+        tblDocumento.getColumnModel().getColumn(5).setPreferredWidth(200);
+        tblDocumento.getColumnModel().getColumn(6).setPreferredWidth(200);
+        tblDocumento.getColumnModel().getColumn(7).setPreferredWidth(500);
+        tblDocumento.getColumnModel().getColumn(8).setPreferredWidth(100);
+        tblDocumento.getColumnModel().getColumn(9).setPreferredWidth(80);
+        
     }
     public void TablaDocumento(String nrodoc, String hoja_ruta, String remitente, 
             String area_remi, String asunto){
@@ -66,6 +79,7 @@ public class CONUSLTA_DOC extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println(e);
         }
+        OrderTabla();
     }
     public void TablaDetalle(String iddoc){
         String titulo[] = {"ID","FECHA","ASIGNADO", "OBSERVACIONES", "ESTADO", "DEPEND DESTINO",
@@ -282,6 +296,8 @@ public class CONUSLTA_DOC extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)), "DOCUMENTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12), new java.awt.Color(0, 153, 204))); // NOI18N
 
+        tblDocumento.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblDocumento.getTableHeader().setReorderingAllowed(false);
         tblDocumento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDocumentoMouseClicked(evt);
@@ -336,9 +352,8 @@ public class CONUSLTA_DOC extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
@@ -382,35 +397,77 @@ public class CONUSLTA_DOC extends javax.swing.JDialog {
     }//GEN-LAST:event_tblDocumentoMouseClicked
 
     private void txtNro_docKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNro_docKeyPressed
-        String nro;
-        if(txtNro_doc.getText().length()>0){
-            nro=txtNro_doc.getText();
-            TablaDocumento(nro, "", null, null, null);
-        }
+//        String nro;
+//        if(txtNro_doc.getText().length()>0){
+//            nro=txtNro_doc.getText();
+//            TablaDocumento(nro, "", null, null, null);
+//        }
+        
+         TableRowSorter sorter = new TableRowSorter<>(tblDocumento.getModel());
+               RowFilter<DefaultTableModel, Object> rf;
+               //If current expression doesn't parse, don't update.
+               try {
+                   rf = RowFilter.regexFilter(txtNro_doc.getText().toUpperCase(), 2);
+               } catch (java.util.regex.PatternSyntaxException e) {
+                   return;
+               }
+                sorter.setRowFilter(rf);
+       tblDocumento.setRowSorter(sorter);
     }//GEN-LAST:event_txtNro_docKeyPressed
 
     private void txtHoja_RutaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoja_RutaKeyPressed
-        String hr;
-        if(txtHoja_Ruta.getText().length()>0){
-            hr=txtHoja_Ruta.getText();
-            TablaDocumento(null, hr, null, null, null);
-        }
+//        String hr;
+//        if(txtHoja_Ruta.getText().length()>0){
+//            hr=txtHoja_Ruta.getText();
+//            TablaDocumento(null, hr, null, null, null);
+//        }
+        
+         TableRowSorter sorter = new TableRowSorter<>(tblDocumento.getModel());
+               RowFilter<DefaultTableModel, Object> rf;
+               //If current expression doesn't parse, don't update.
+               try {
+                   rf = RowFilter.regexFilter(txtHoja_Ruta.getText().toUpperCase(), 3);
+               } catch (java.util.regex.PatternSyntaxException e) {
+                   return;
+               }
+                sorter.setRowFilter(rf);
+       tblDocumento.setRowSorter(sorter);
     }//GEN-LAST:event_txtHoja_RutaKeyPressed
 
     private void txtRemitenteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRemitenteKeyPressed
-        String rem;
-        if(txtRemitente.getText().length()>0){
-            rem=txtRemitente.getText();
-            TablaDocumento(null, null, rem, null, null);
-        }
+//        String rem;
+//        if(txtRemitente.getText().length()>0){
+//            rem=txtRemitente.getText();
+//            TablaDocumento(null, null, rem, null, null);
+//        }
+        TableRowSorter sorter = new TableRowSorter<>(tblDocumento.getModel());
+               RowFilter<DefaultTableModel, Object> rf;
+               //If current expression doesn't parse, don't update.
+               try {
+                   rf = RowFilter.regexFilter(txtRemitente.getText().toUpperCase(), 6);
+               } catch (java.util.regex.PatternSyntaxException e) {
+                   return;
+               }
+                sorter.setRowFilter(rf);
+       tblDocumento.setRowSorter(sorter);
     }//GEN-LAST:event_txtRemitenteKeyPressed
 
     private void txtAreaRemiteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAreaRemiteKeyPressed
-       String remA;
-        if(txtAreaRemite.getText().length()>0){
-            remA=txtAreaRemite.getText();
-            TablaDocumento(null, null, null, remA, null);
-        }
+//       String remA;
+//        if(txtAreaRemite.getText().length()>0){
+//            remA=txtAreaRemite.getText();
+//            TablaDocumento(null, null, null, remA, null);
+//        }
+         TableRowSorter sorter = new TableRowSorter<>(tblDocumento.getModel());
+               RowFilter<DefaultTableModel, Object> rf;
+               //If current expression doesn't parse, don't update.
+               try {
+                   rf = RowFilter.regexFilter(txtAreaRemite.getText().toUpperCase(), 5);
+               } catch (java.util.regex.PatternSyntaxException e) {
+                   return;
+               }
+                sorter.setRowFilter(rf);
+       tblDocumento.setRowSorter(sorter);
     }//GEN-LAST:event_txtAreaRemiteKeyPressed
 
     private void txtAsuntoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAsuntoKeyPressed
