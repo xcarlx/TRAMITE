@@ -335,6 +335,7 @@ public final class GuiaLima extends javax.swing.JDialog {
         btnNuevo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -430,6 +431,13 @@ public final class GuiaLima extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Consultar Guia");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -439,7 +447,9 @@ public final class GuiaLima extends javax.swing.JDialog {
                 .addComponent(btnNuevo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 461, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addContainerGap())
         );
@@ -450,7 +460,8 @@ public final class GuiaLima extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
                     .addComponent(btnEditar)
-                    .addComponent(btnSalir))
+                    .addComponent(btnSalir)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -757,6 +768,13 @@ public final class GuiaLima extends javax.swing.JDialog {
          TablaGuiaLima(jTextField1.getText());
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        BUSCAR_GUIA bg = new BUSCAR_GUIA(null, true);
+        bg.setIdtipo_guia("1");
+        bg.CargarTabla(null, null, null, "", null);
+        bg.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -802,6 +820,7 @@ public final class GuiaLima extends javax.swing.JDialog {
     private javax.swing.JButton btnTerminar;
     private javax.swing.JComboBox cmbTipoDoc;
     private com.toedter.calendar.JDateChooser dcFecha;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
