@@ -71,7 +71,7 @@ public final class GuiaLima extends javax.swing.JDialog {
             while(rs.next()){
                 idguia=rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         int nroguia = 0;
@@ -83,7 +83,7 @@ public final class GuiaLima extends javax.swing.JDialog {
             while(rs.next()){
                 nroguia=rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         SimpleDateFormat sdf11=new SimpleDateFormat("yyyy");
@@ -313,7 +313,7 @@ public final class GuiaLima extends javax.swing.JDialog {
                 tabla_modelo.addRow(registro);
             }
             jTable2.setModel(tabla_modelo);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         OrdenarTabla();
@@ -480,7 +480,6 @@ public final class GuiaLima extends javax.swing.JDialog {
         jLabel3.setText("Fecha");
 
         txtNroGuia.setEditable(false);
-        txtNroGuia.setBackground(new java.awt.Color(255, 255, 255));
         txtNroGuia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNroGuia.setForeground(new java.awt.Color(0, 153, 153));
         txtNroGuia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -897,14 +896,14 @@ public final class GuiaLima extends javax.swing.JDialog {
      
     public void idguiaActiva(){
         try {
-           String sql="select max(idguia), nroguia, FECHA_ENVIO from guia where idtipo_guia=1 and estado like 'ACTIVO'";
+           String sql="select nroguia, FECHA_ENVIO from guia where idtipo_guia=1 and estado like 'ACTIVO'";
            st = con.createStatement();
            rs = st.executeQuery(sql);
            while(rs.next()){
-               txtNroGuia.setText(rs.getString(2));
-               dcFecha.setDate(rs.getDate(3));
+               txtNroGuia.setText(rs.getString(1));
+               dcFecha.setDate(rs.getDate(2));
            }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(""+e);
         }
     }

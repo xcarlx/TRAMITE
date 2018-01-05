@@ -68,7 +68,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
                 tabla_guiaProvin.addRow(registro);
             }
             tblGuiaPro.setModel(tabla_guiaProvin);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"TablaGuiaPro- \n"+ e);
         }
             
@@ -617,7 +617,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
                 cmbDependencia.addItem(rs.getString(1));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_cmbProvinciaActionPerformed
@@ -632,7 +632,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
                 id=rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(rootPane, "ERROR AL CAPTURAR EL cout iddgia \n"+e);
         }
         if(id==0){
@@ -657,7 +657,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
                 cmbResponsable.addItem(rs.getString(1));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_cmbDependenciaActionPerformed
@@ -687,7 +687,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
                 idguia=rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         String iddependencia = null;
@@ -699,7 +699,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
                 iddependencia=rs.getString(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         int nroguia = 0;
@@ -711,7 +711,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
                 nroguia=rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         SimpleDateFormat sdf11=new SimpleDateFormat("yyyy");
@@ -815,13 +815,13 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
     public void IdiguiaActiva(){
      try {
-           String sql="select max(idguia), nroguia from guia where idtipo_guia=2 and estado like 'ACTIVO' group by idguia";
+           String sql="select nroguia from guia where idtipo_guia=2 and estado like 'ACTIVO' group by idguia";
            Statement st = cn.createStatement();
            ResultSet rs = st.executeQuery(sql);
            while(rs.next()){
-               lblGuiaProv.setText(rs.getString(2));
+               lblGuiaProv.setText(rs.getString(1));
            }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("IdiguiaActiva-> \n"+e);
         }
     }
@@ -835,13 +835,13 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
         btnCancelar.setEnabled(false);
         HIDetalle(b);
         try {
-           String sql="select max(idguia), nroguia from guia where idtipo_guia=2 and estado like 'ACTIVO'";
+           String sql="select nroguia from guia where idtipo_guia=2 and estado like 'ACTIVO'";
            Statement st = cn.createStatement();
            ResultSet rs = st.executeQuery(sql);
            while(rs.next()){
-               lblGuiaProv.setText(rs.getString(2));
+               lblGuiaProv.setText(rs.getString(1));
            }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("btnNuevoDetalleActionPerformed\n"+e);
         }
         btnNuevoDetalle.setEnabled(false);
@@ -882,8 +882,8 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
                 while(rs.next()){
                     idguia=rs.getString(1);
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "btnAgregarActionPerformed\n"+e);
             }
             try {
                 String sql="select count(idguia_d) from guia_detalle "
@@ -893,8 +893,8 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
                 while(rs.next()){
                     idguia_D=rs.getInt(1);
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "btnAgregarActionPerformed\n"+e);
             }
             try {
                 PreparedStatement pst = cn.prepareStatement(sSQL);
@@ -931,7 +931,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
                     TablaGuiaPro();
                 }
             } catch (SQLException | HeadlessException e) {
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, "btnAgregarActionPerformed\n"+e);
             } 
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -952,8 +952,8 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
             idguia=rs.getString(1);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "btnFinalizarActionPerformed\n"+e);
         }
         try {
             String sql="UPDATE guia SET ESTADO=? WHERE IDGUIA="+idguia+" "
@@ -972,8 +972,8 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
                 btnCancelar.setEnabled(true);
                 TablaGuiaPro();
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "btnFinalizarActionPerformed\n"+e);
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
@@ -1002,8 +1002,8 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
                id = (String) tabla_guiaProvin.getValueAt(filasel, 0);
                BuscarDocEditar(id);
             }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+        }catch(HeadlessException e){
+            JOptionPane.showMessageDialog(null, "miEditarActionPerformed\n"+e);
         } 
     }//GEN-LAST:event_miEditarActionPerformed
 
@@ -1031,7 +1031,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
                 id=rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(rootPane, "ERROR AL CAPTURAR EL cout iddgia \n"+e);
         }
         if(id==0){
@@ -1054,7 +1054,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
                     cmbProvincia.setSelectedItem(rs.getString(2));
                     cmbDependencia.setSelectedItem(rs.getString(3));
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.toString());
             }
             HIGuia(true);
@@ -1155,7 +1155,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
                 cmbTipoDoc.addItem(rs.getString(1));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         try {
@@ -1164,7 +1164,7 @@ public final class GUIA_PROVINCIA extends javax.swing.JDialog {
             while(rs.next()){
                 cmbProvincia.addItem(rs.getString(1));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }

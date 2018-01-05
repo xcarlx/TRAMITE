@@ -82,9 +82,9 @@ public final class MODIFICAR_GUIA extends javax.swing.JDialog {
         String sql = "select g.IDGUIA, tg.tipo, g.FECHA_ENVIO, g.NROGUIA, dep.DEPENDENCIA from guia g " +
                 "inner join tipo_guia tg on g.IDTIPO_GUIA = tg.IDTIPO_GUIA " +
                 "inner join dependencias dep on g.IDDEPENDENCIA = dep.IDDEPENDENCIA "
-                + "WHERE g.IDTIPO_GUIA = 1 and g.nroguia='"+nrog+"' and ESTADO = 'ENVIADO' "
+                + "WHERE g.IDTIPO_GUIA = 1 and g.nroguia='"+nrog+"' and g.estado = 'ENVIADO' "
                 + "OR g.IDTIPO_GUIA = 1 and  g.FECHA_ENVIO >= '"+fechai+"' and g.FECHA_ENVIO <= '"+fechaf+"' "
-                + "and ESTADO = 'ENVIADO'";
+                + "and g.estado = 'ENVIADO'";
         String titulos [] = {"ID", "TIPO", "FECHA", "NRO_GUIA", "DEPENDENCIA"};
         tabla_model = new DefaultTableModel(null, titulos);
         String registro [] = new String[5];
@@ -100,7 +100,7 @@ public final class MODIFICAR_GUIA extends javax.swing.JDialog {
                 tabla_model.addRow(registro);
             }
             jTable1.setModel(tabla_model);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERROR \n"+e.toString());
         }
         tabla1();
@@ -110,12 +110,12 @@ public final class MODIFICAR_GUIA extends javax.swing.JDialog {
                 + "dep.DEPENDENCIA from guia g " +
                 "inner join tipo_guia tg on g.IDTIPO_GUIA = tg.IDTIPO_GUIA " +
                 "inner join dependencias dep on g.IDDEPENDENCIA = dep.IDDEPENDENCIA "
-                + "WHERE g.IDTIPO_GUIA = 2 and g.nroguia='"+nrog+"' and ESTADO = 'ENVIADO' "
+                + "WHERE g.IDTIPO_GUIA = 2 and g.nroguia='"+nrog+"' and g.estado = 'ENVIADO' "
                 + "OR g.IDTIPO_GUIA = 2 and  g.FECHA_ENVIO >= '"+fechai+"' "
-                + "and g.FECHA_ENVIO <= '"+fechaf+"' and ESTADO = 'ENVIADO'"
-                + "OR  g.IDTIPO_GUIA = 2 and g.responsable LIKE '%"+responsable+"%' and ESTADO = 'ENVIADO'"
+                + "and g.FECHA_ENVIO <= '"+fechaf+"' and g.estado = 'ENVIADO'"
+                + "OR  g.IDTIPO_GUIA = 2 and g.responsable LIKE '%"+responsable+"%' and g.estado = 'ENVIADO'"
                 + "OR dep.dependencia = '"+depen+"' "
-                + "and ESTADO = 'ENVIADO'";
+                + "and g.estado = 'ENVIADO'";
         String titulos [] = {"ID", "TIPO", "FECHA", "NRO_GUIA", "RESPONSABLE","PROVINCIA","DEPENDENCIA"};
         tabla_model = new DefaultTableModel(null, titulos);
         String registro [] = new String[7];
@@ -133,7 +133,7 @@ public final class MODIFICAR_GUIA extends javax.swing.JDialog {
                 tabla_model.addRow(registro);
             }
             jTable1.setModel(tabla_model);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERROR \n"+e.toString());
         }
         tabla2();
@@ -438,7 +438,7 @@ public final class MODIFICAR_GUIA extends javax.swing.JDialog {
             while(rs1.next()){
                 cmbDep.addItem(rs1.getString(1));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_cmbProvActionPerformed
@@ -515,7 +515,7 @@ public final class MODIFICAR_GUIA extends javax.swing.JDialog {
             while(rs.next()){
                 cmbProv.addItem(rs.getString(1));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
